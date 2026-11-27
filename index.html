@@ -3,28 +3,61 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Accédez aux défis de programmation en C.">
-    <title>Défis de programmation</title>
+    <meta name="description" content="Cours de programmation progressifs, fiches de révision et défis pratiques en C.">
+    <title>Atelier de programmation | Cours et défis</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="site-search.js" defer></script>
   </head>
   <body>
     <header class="site-header">
       <a class="site-name" href="index.html">Atelier de programmation</a>
     </header>
-
     <main class="home">
-      <p class="eyebrow">Pages disponibles</p>
-      <h1>Défis de programmation</h1>
-      <p class="intro">Choisissez une page pour consulter les exercices.</p>
+      <p class="eyebrow">Cours, révisions et pratique</p>
+      <h1>Atelier de programmation</h1>
+      <p class="intro">Choisissez une notion à revoir ou un défi à résoudre. Les cours expliquent les idées pas à pas; les défis permettent de les mettre en pratique.</p>
 
-      <a class="page-card" href="defis-c-bases.html">
-        <span class="card-icon" aria-hidden="true">C</span>
-        <span>
-          <strong>Défis C</strong>
-          <small>Variables, conditions, boucles, tableaux et fonctions</small>
-        </span>
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
+      <form class="site-search-panel" role="search" id="site-search-form">
+        <label for="site-search">Rechercher une page, une notion ou un exercice</label>
+        <div class="site-search-controls">
+          <input id="site-search" name="q" type="search" autocomplete="off" placeholder="Ex. tableau 2D, pointeur, palindrome">
+          <button type="button" id="clear-site-search">Effacer</button>
+        </div>
+        <p class="site-search-help">La recherche fonctionne sur cette page, sans compte ni service externe.</p>
+        <p class="site-search-status" id="site-search-status" aria-live="polite">Toutes les ressources sont affichées.</p>
+        <div class="site-search-results" id="site-search-results" aria-label="Résultats de recherche" hidden></div>
+      </form>
+
+      <section id="page-catalog" aria-label="Pages disponibles">
+        <h2>Pages disponibles</h2>
+        <a class="page-card" href="defis-c.html">
+          <span class="card-icon" aria-hidden="true">C</span><span><strong>Défis C</strong><small>Variables, conditions, boucles, tableaux et fonctions</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="notions-c-bases.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">⌘</span><span><strong>Révisions : notions de base en C</strong><small>Explications, exemples de code et sorties attendues</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="defis-pointeurs-c.html">
+          <span class="card-icon" aria-hidden="true">C</span><span><strong>Défis : tableaux, chaînes et pointeurs</strong><small>21 exercices progressifs, défis 1 à 21</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="defis-c-bases-2.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">C</span><span><strong>Défis C : bases 2</strong><small>30 exercices progressifs et un quiz final sur 10 points</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="cours-c-bases-2.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">📘</span><span><strong>Cours interactif : bases du C</strong><small>Explications pas à pas, mini-quiz et visualisation de code</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="cours-tableaux-c.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">▦</span><span><strong>Cours : tableaux simples et 2D</strong><small>Indices, parcours, fonctions et matrices</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="cours-chaines-c.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">Aa</span><span><strong>Cours : chaînes de caractères</strong><small>char[], char *, fin de chaîne et parcours</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="cours-pointeurs-c.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">↗</span><span><strong>Cours : pointeurs</strong><small>Adresses, déréférencement et pointeurs vers pointeurs</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="page-card" href="cours-passage-parametres-c.html">
+          <span class="card-icon card-icon-notes" aria-hidden="true">ƒ</span><span><strong>Cours : paramètres de fonction</strong><small>Passage par valeur, adresse et tableaux</small></span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </section>
     </main>
   </body>
 </html>

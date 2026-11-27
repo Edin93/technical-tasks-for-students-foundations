@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="30 exercices progressifs en C avec un quiz final.">
+    <title>Défis C - Bases 2</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="index.html">Atelier de programmation</a>
+    </header>
+    <main class="exercise-page">
+      <a class="back-link" href="index.html">← Toutes les pages</a>
+      <article class="markdown-body">
+        <h1>Défis C : bases, conditions, boucles et fonctions</h1>
+        <p>Ce cahier contient 30 exercices progressifs et un quiz final noté sur 10 points. Chaque défi est un programme autonome à écrire dans le fichier indiqué.</p>
+        <h2>Consignes générales</h2>
+        <ul>
+        <li>Utilise GCC sous Ubuntu 22, 24 ou 26 LTS</li>
+        <li>Pour chaque exercice, compile puis exécute le fichier depuis le terminal</li>
+        <li>Respecte exactement la sortie attendue, y compris les espaces et les retours à la ligne</li>
+        <li>Avec <code>gnu89</code> et <code>-pedantic -Werror</code>, déclare les variables au début de chaque bloc, avant les instructions. Ne déclare pas une variable directement dans l’en-tête d’une boucle <code>for</code></li>
+        <li>Les exercices utilisent des valeurs définies dans le programme; aucune saisie clavier n’est nécessaire</li>
+        </ul>
+        <h2 id="defi-01">Exercice 01 - Compter de 0 à 10</h2>
+        <p>Affiche les nombres de 0 à 10 inclus, séparés par un espace, sur une seule ligne.</p>
+        <ul>
+        <li>Fichier : <code>exercice-01.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-01.c -o exercice-01</code></li>
+        <li>Exécution : <code>./exercice-01</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>0 1 2 3 4 5 6 7 8 9 10</code></pre>
+        <h2 id="defi-02">Exercice 02 - Compter de 50 à 100</h2>
+        <p>Affiche tous les nombres de 50 à 100 inclus, séparés par un espace.</p>
+        <ul>
+        <li>Fichier : <code>exercice-02.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-02.c -o exercice-02</code></li>
+        <li>Exécution : <code>./exercice-02</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100</code></pre>
+        <h2 id="defi-03">Exercice 03 - Afficher l’alphabet</h2>
+        <p>Affiche toutes les lettres minuscules de <code>a</code> à <code>z</code> sur une seule ligne, sans espace.</p>
+        <ul>
+        <li>Fichier : <code>exercice-03.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-03.c -o exercice-03</code></li>
+        <li>Exécution : <code>./exercice-03</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>abcdefghijklmnopqrstuvwxyz</code></pre>
+        <h2 id="defi-04">Exercice 04 - Afficher un entier</h2>
+        <p>Déclare un entier <code>nombre</code> égal à 42 et affiche-le avec un libellé.</p>
+        <ul>
+        <li>Fichier : <code>exercice-04.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-04.c -o exercice-04</code></li>
+        <li>Exécution : <code>./exercice-04</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Nombre : 42</code></pre>
+        <h2 id="defi-05">Exercice 05 - Afficher un long int</h2>
+        <p>Déclare une variable de type <code>long int</code> égale à 1234567890 et affiche sa valeur avec le spécificateur adapté à ce type.</p>
+        <ul>
+        <li>Fichier : <code>exercice-05.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-05.c -o exercice-05</code></li>
+        <li>Exécution : <code>./exercice-05</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Distance : 1234567890</code></pre>
+        <h2 id="defi-06">Exercice 06 - Afficher un nombre décimal</h2>
+        <p>Déclare un <code>float</code> nommé <code>prix</code> et initialise-le à 12,5. Affiche-le avec deux chiffres après la virgule.</p>
+        <ul>
+        <li>Fichier : <code>exercice-06.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-06.c -o exercice-06</code></li>
+        <li>Exécution : <code>./exercice-06</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Prix : 12.50</code></pre>
+        <h2 id="defi-07">Exercice 07 - Afficher un caractère et une chaîne</h2>
+        <p>Déclare le caractère <code>M</code> et le tableau de caractères <code>Marie</code>. Affiche le caractère avec <code>%c</code> et la chaîne avec <code>%s</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-07.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-07.c -o exercice-07</code></li>
+        <li>Exécution : <code>./exercice-07</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Initiale : M
+Prénom : Marie</code></pre>
+        <h2 id="defi-08">Exercice 08 - Garder une valeur constante</h2>
+        <p>Déclare <code>const int LIMITE</code> avec la valeur 10 et affiche cette valeur. Ne tente pas de la modifier.</p>
+        <ul>
+        <li>Fichier : <code>exercice-08.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-08.c -o exercice-08</code></li>
+        <li>Exécution : <code>./exercice-08</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Limite : 10</code></pre>
+        <h2 id="defi-09">Exercice 09 - Pair ou impair</h2>
+        <p>Déclare un entier égal à 14. Avec une condition, affiche s’il est pair ou impair.</p>
+        <ul>
+        <li>Fichier : <code>exercice-09.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-09.c -o exercice-09</code></li>
+        <li>Exécution : <code>./exercice-09</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>14 est pair.</code></pre>
+        <h2 id="defi-10">Exercice 10 - Positif, négatif ou nul</h2>
+        <p>Déclare un entier égal à -3. Utilise <code>if</code>, <code>else if</code> et <code>else</code> pour déterminer s’il est positif, négatif ou nul.</p>
+        <ul>
+        <li>Fichier : <code>exercice-10.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-10.c -o exercice-10</code></li>
+        <li>Exécution : <code>./exercice-10</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>-3 est négatif.</code></pre>
+        <h2 id="defi-11">Exercice 11 - Appréciation d’une note</h2>
+        <p>Déclare une note égale à 15 et affiche son appréciation avec <code>if</code>, <code>else if</code> et <code>else</code>. Utilise ces catégories : moins de 10 « Insuffisant », de 10 à 11 « Passable », de 12 à 13 « Assez bien », de 14 à 15 « Bien », à partir de 16 « Très bien ».</p>
+        <ul>
+        <li>Fichier : <code>exercice-11.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-11.c -o exercice-11</code></li>
+        <li>Exécution : <code>./exercice-11</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Note : 15
+Appréciation : Bien</code></pre>
+        <h2 id="defi-12">Exercice 12 - Trouver le maximum de trois nombres</h2>
+        <p>Déclare les entiers 8, 12 et 5. Avec des conditions, détermine puis affiche le plus grand.</p>
+        <ul>
+        <li>Fichier : <code>exercice-12.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-12.c -o exercice-12</code></li>
+        <li>Exécution : <code>./exercice-12</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Maximum : 12</code></pre>
+        <h2 id="defi-13">Exercice 13 - Calculer une somme avec for</h2>
+        <p>Utilise une boucle <code>for</code> pour calculer la somme des entiers de 1 à 10 inclus, puis affiche le résultat.</p>
+        <ul>
+        <li>Fichier : <code>exercice-13.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-13.c -o exercice-13</code></li>
+        <li>Exécution : <code>./exercice-13</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme : 55</code></pre>
+        <h2 id="defi-14">Exercice 14 - Compte à rebours avec while</h2>
+        <p>Avec une boucle <code>while</code>, affiche les nombres de 5 à 1, un nombre par ligne, puis affiche <code>Partez !</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-14.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-14.c -o exercice-14</code></li>
+        <li>Exécution : <code>./exercice-14</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>5
+4
+3
+2
+1
+Partez !</code></pre>
+        <h2 id="defi-15">Exercice 15 - Répéter avec do while</h2>
+        <p>Utilise une boucle <code>do while</code> pour afficher les nombres de 1 à 5, un nombre par ligne.</p>
+        <ul>
+        <li>Fichier : <code>exercice-15.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-15.c -o exercice-15</code></li>
+        <li>Exécution : <code>./exercice-15</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>1
+2
+3
+4
+5</code></pre>
+        <h2 id="defi-16">Exercice 16 - Ignorer les multiples de trois</h2>
+        <p>Affiche les nombres de 1 à 10. Utilise <code>continue</code> pour ne pas afficher les multiples de 3.</p>
+        <ul>
+        <li>Fichier : <code>exercice-16.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-16.c -o exercice-16</code></li>
+        <li>Exécution : <code>./exercice-16</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>1 2 4 5 7 8 10</code></pre>
+        <h2 id="defi-17">Exercice 17 - Arrêter une boucle avec break</h2>
+        <p>Parcours les entiers de 1 à 10 et affiche-les. Utilise <code>break</code> pour arrêter la boucle après avoir affiché 7.</p>
+        <ul>
+        <li>Fichier : <code>exercice-17.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-17.c -o exercice-17</code></li>
+        <li>Exécution : <code>./exercice-17</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>1 2 3 4 5 6 7</code></pre>
+        <h2 id="defi-18">Exercice 18 - Afficher les nombres pairs avec while</h2>
+        <p>Avec une boucle <code>while</code>, affiche les nombres pairs de 0 à 20 inclus, séparés par un espace.</p>
+        <ul>
+        <li>Fichier : <code>exercice-18.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-18.c -o exercice-18</code></li>
+        <li>Exécution : <code>./exercice-18</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>0 2 4 6 8 10 12 14 16 18 20</code></pre>
+        <h2 id="defi-19">Exercice 19 - Table de multiplication</h2>
+        <p>Affiche la table de multiplication de 6, de <code>6 x 1</code> à <code>6 x 5</code>, une opération par ligne.</p>
+        <ul>
+        <li>Fichier : <code>exercice-19.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-19.c -o exercice-19</code></li>
+        <li>Exécution : <code>./exercice-19</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>6 x 1 = 6
+6 x 2 = 12
+6 x 3 = 18
+6 x 4 = 24
+6 x 5 = 30</code></pre>
+        <h2 id="defi-20">Exercice 20 - Dessiner un rectangle</h2>
+        <p>Avec deux boucles imbriquées, dessine un rectangle de 7 astérisques de largeur et de 3 lignes de hauteur.</p>
+        <ul>
+        <li>Fichier : <code>exercice-20.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-20.c -o exercice-20</code></li>
+        <li>Exécution : <code>./exercice-20</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>*******
+*******
+*******</code></pre>
+        <h2 id="defi-21">Exercice 21 - Dessiner un carré</h2>
+        <p>Avec deux boucles imbriquées, dessine un carré de 4 astérisques de côté.</p>
+        <ul>
+        <li>Fichier : <code>exercice-21.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-21.c -o exercice-21</code></li>
+        <li>Exécution : <code>./exercice-21</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>****
+****
+****
+****</code></pre>
+        <h2 id="defi-22">Exercice 22 - Dessiner un triangle</h2>
+        <p>Avec deux boucles imbriquées, dessine un triangle rectangle de 5 lignes.</p>
+        <ul>
+        <li>Fichier : <code>exercice-22.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-22.c -o exercice-22</code></li>
+        <li>Exécution : <code>./exercice-22</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>*
+**
+***
+****
+*****</code></pre>
+        <h2 id="defi-23">Exercice 23 - Dessiner un triangle inversé</h2>
+        <p>Avec deux boucles imbriquées, dessine un triangle inversé de 5 lignes.</p>
+        <ul>
+        <li>Fichier : <code>exercice-23.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-23.c -o exercice-23</code></li>
+        <li>Exécution : <code>./exercice-23</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>*****
+****
+***
+**
+*</code></pre>
+        <h2 id="defi-24">Exercice 24 - FizzBuzz de 1 à 15</h2>
+        <p>Affiche les nombres de 1 à 15, un par ligne. Pour les multiples de 3, affiche <code>Fizz</code>; pour ceux de 5, <code>Buzz</code>; pour ceux de 3 et 5, <code>FizzBuzz</code>. Vérifie d’abord le dernier cas.</p>
+        <ul>
+        <li>Fichier : <code>exercice-24.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-24.c -o exercice-24</code></li>
+        <li>Exécution : <code>./exercice-24</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz</code></pre>
+        <h2 id="defi-25">Exercice 25 - Reconnaître un palindrome</h2>
+        <p>Déclare le tableau de caractères <code>radar</code>. Avec une boucle et des conditions, détermine si le mot se lit de la même manière dans les deux sens, puis affiche le résultat. Compare les caractères en minuscules, sans espaces ni ponctuation.</p>
+        <ul>
+        <li>Fichier : <code>exercice-25.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-25.c -o exercice-25</code></li>
+        <li>Exécution : <code>./exercice-25</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>radar est un palindrome.</code></pre>
+        <h2 id="defi-26">Exercice 26 - Fonction sans paramètre et sans retour</h2>
+        <p>Tout programme démarre dans la fonction <code>main</code>. Dans les exercices, elle est écrite sous la forme <code>int main(void)</code> et renvoie 0 à la fin pour indiquer que le programme s’est terminé correctement.</p>
+        <p>Écris <code>void afficherBonjour(void)</code>, une fonction sans paramètre qui affiche <code>Bonjour !</code>. Appelle-la depuis <code>main</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-26.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-26.c -o exercice-26</code></li>
+        <li>Exécution : <code>./exercice-26</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Bonjour !</code></pre>
+        <h2 id="defi-27">Exercice 27 - Fonction void avec un paramètre entier</h2>
+        <p>Écris <code>void afficherDouble(int nombre)</code>. La fonction affiche le double de son paramètre. Appelle-la avec 6 depuis <code>main</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-27.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-27.c -o exercice-27</code></li>
+        <li>Exécution : <code>./exercice-27</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Double : 12</code></pre>
+        <h2 id="defi-28">Exercice 28 - Fonction void avec un paramètre caractère</h2>
+        <p>Écris <code>void afficherLettre(char lettre)</code>. La fonction affiche la lettre reçue. Appelle-la avec le caractère <code>Z</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-28.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-28.c -o exercice-28</code></li>
+        <li>Exécution : <code>./exercice-28</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Lettre : Z</code></pre>
+        <h2 id="defi-29">Exercice 29 - Fonctions qui renvoient un entier</h2>
+        <p>Écris <code>int obtenirDix(void)</code>, qui renvoie 10, et <code>int additionner(int a, int b)</code>, qui renvoie la somme de ses deux paramètres. Appelle les deux fonctions depuis <code>main</code> et affiche leurs résultats.</p>
+        <ul>
+        <li>Fichier : <code>exercice-29.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-29.c -o exercice-29</code></li>
+        <li>Exécution : <code>./exercice-29</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Valeur : 10
+Somme : 7</code></pre>
+        <h2 id="defi-30">Exercice 30 - Fonctions qui renvoient un caractère</h2>
+        <p>Écris <code>char obtenirInitiale(void)</code>, qui renvoie <code>M</code>, et <code>char mettreEnMajuscule(char lettre)</code>, qui renvoie la majuscule correspondant à une lettre minuscule ASCII reçue en paramètre. Teste les deux fonctions depuis <code>main</code>.</p>
+        <ul>
+        <li>Fichier : <code>exercice-30.c</code></li>
+        <li>Compilation : <code>gcc -Wall -Werror -pedantic -Wextra -std=gnu89 exercice-30.c -o exercice-30</code></li>
+        <li>Exécution : <code>./exercice-30</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Initiale : M
+Majuscule : A</code></pre>
+        <section class="quiz-section" id="quiz">
+        <h2>Quiz final - 10 points</h2>
+        <p>Chaque affirmation vaut 1 point. Choisis « Vrai » ou « Faux », puis valide pour voir les réponses correctes et ton score final sur 10.</p>
+        <form id="quiz-form">
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>1. Le spécificateur printf pour un long int est %ld.</legend>
+        <label data-option="vrai"><input type="radio" name="q1" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q1" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="faux">
+        <legend>2. En C, un caractère seul s’écrit entre guillemets doubles, comme &quot;A&quot;.</legend>
+        <label data-option="vrai"><input type="radio" name="q2" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q2" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>3. Une variable déclarée const ne doit pas être modifiée après son initialisation.</legend>
+        <label data-option="vrai"><input type="radio" name="q3" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q3" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>4. Le premier élément d’un tableau a l’indice 0.</legend>
+        <label data-option="vrai"><input type="radio" name="q4" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q4" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>5. L’expression nombre % 2 == 0 teste si nombre est pair.</legend>
+        <label data-option="vrai"><input type="radio" name="q5" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q5" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>6. Une boucle while peut exécuter son corps zéro fois.</legend>
+        <label data-option="vrai"><input type="radio" name="q6" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q6" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>7. Le corps d’une boucle do while s’exécute au moins une fois.</legend>
+        <label data-option="vrai"><input type="radio" name="q7" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q7" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="vrai">
+        <legend>8. break quitte la boucle la plus proche qui contient cette instruction.</legend>
+        <label data-option="vrai"><input type="radio" name="q8" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q8" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="faux">
+        <legend>9. continue termine complètement la boucle.</legend>
+        <label data-option="vrai"><input type="radio" name="q9" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q9" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <fieldset class="quiz-question" data-answer="faux">
+        <legend>10. Une fonction déclarée void afficher(void) reçoit un paramètre et renvoie un entier.</legend>
+        <label data-option="vrai"><input type="radio" name="q10" value="vrai"> Vrai</label>
+        <label data-option="faux"><input type="radio" name="q10" value="faux"> Faux</label>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        </fieldset>
+        <button class="quiz-button" type="submit">Calculer mon score</button>
+        <p class="quiz-score" id="quiz-score" role="status" aria-live="polite"></p>
+        </form>
+        </section>
+        <aside class="editor-callout">
+        <h2>Éditeur C en ligne (facultatif)</h2>
+        <p><a href="https://www.jdoodle.com/c-online-compiler/" target="_blank" rel="noopener">Ouvrir l’éditeur C en ligne de JDoodle</a> permet d’écrire et d’exécuter un fichier C dans le navigateur.</p>
+        <p>Pour valider un exercice, utilise la commande GCC indiquée dans l’énoncé : l’éditeur en ligne peut utiliser une version ou des options différentes.</p>
+        </aside>
+      </article>
+    </main>
+    <script>
+document.getElementById("quiz-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var questions = document.querySelectorAll(".quiz-question");
+  var score = 0;
+  questions.forEach(function (question) {
+    var correct = question.dataset.answer;
+    var selected = question.querySelector("input:checked");
+    var feedback = question.querySelector(".quiz-feedback");
+    question.querySelectorAll("label").forEach(function (label) {
+      label.classList.remove("is-correct", "is-wrong");
+      if (label.dataset.option === correct) label.classList.add("is-correct");
+      if (selected && label.contains(selected) && selected.value !== correct) label.classList.add("is-wrong");
+    });
+    if (selected && selected.value === correct) {
+      score++;
+      feedback.textContent = "Bonne réponse ! +1 point.";
+    } else if (selected) {
+      feedback.textContent = "Réponse incorrecte. La bonne réponse est indiquée en vert.";
+    } else {
+      feedback.textContent = "Question sans réponse. La bonne réponse est indiquée en vert.";
+    }
+  });
+  document.getElementById("quiz-score").textContent = "Score final : " + score + " / 10";
+});
+</script>
+  </body>
+</html>
+

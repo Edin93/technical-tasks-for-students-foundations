@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Défis progressifs sur les tableaux, chaînes et pointeurs en C.">
+    <title>Défis C : tableaux, chaînes et pointeurs</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="index.html">Atelier de programmation</a>
+    </header>
+    <main class="exercise-page">
+      <a class="back-link" href="index.html">← Toutes les pages</a>
+      <nav class="course-path exercise-course-links" aria-label="Cours de révision associés">
+  <a href="cours-tableaux-c.html">Cours : tableaux</a>
+  <a href="cours-chaines-c.html">Cours : chaînes</a>
+  <a href="cours-pointeurs-c.html">Cours : pointeurs</a>
+  <a href="cours-passage-parametres-c.html">Cours : paramètres</a>
+</nav>
+      <article class="markdown-body">
+        <h1>D&#233;fis C : tableaux, cha&#238;nes et pointeurs</h1>
+        <h2>Consignes g&#233;n&#233;rales</h2>
+        <ul>
+        <li>Les d&#233;fis sont ind&#233;pendants : cr&#233;e un fichier <code>.c</code> diff&#233;rent pour chacun</li>
+        <li>Pour ne pas les m&#233;langer avec les autres d&#233;fis du site, place-les dans un dossier <code>defis-tableaux-pointeurs</code></li>
+        <li>Utilise GCC sous Ubuntu 22 ou 24 LTS</li>
+        <li>Avec le standard demand&#233;, d&#233;clare les variables avant les boucles, pas dans l’en-t&#234;te du <code>for</code></li>
+        <li>Compile depuis le dossier qui contient le fichier, puis ex&#233;cute le programme</li>
+        <li>Les tableaux ont une taille connue dans chaque exercice</li>
+        <li>En C, les arguments sont toujours transmis par valeur. Pour qu’une fonction puisse modifier une variable du programme appelant, on lui transmet son adresse &#224; l’aide d’un pointeur. On appelle souvent cela un passage par r&#233;f&#233;rence</li>
+        </ul>
+        <h2 id="defi-01">D&#233;fi 1 - Afficher un tableau d’entiers</h2>
+        <p>D&#233;clare le tableau <code>{3, 6, 9, 12}</code>. Parcours-le avec une boucle <code>for</code> et affiche ses &#233;l&#233;ments sur une ligne, s&#233;par&#233;s par des espaces.</p>
+        <ul>
+        <li>Fichier : <code>defi01.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi01.c -o defi01</code></li>
+        <li>Ex&#233;cution : <code>./defi01</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>3 6 9 12</code></pre>
+        <h2 id="defi-02">D&#233;fi 2 - Calculer la somme d’un tableau</h2>
+        <p>D&#233;clare le tableau <code>{4, 7, 2, 9, 3}</code>. Parcours-le, calcule la somme de ses &#233;l&#233;ments et affiche le r&#233;sultat.</p>
+        <ul>
+        <li>Fichier : <code>defi02.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi02.c -o defi02</code></li>
+        <li>Ex&#233;cution : <code>./defi02</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme : 25</code></pre>
+        <h2 id="defi-03">D&#233;fi 3 - Trouver la plus grande valeur</h2>
+        <p>&#192; partir du tableau <code>{5, 12, 3, 9, 7}</code>, trouve et affiche la plus grande valeur. Initialise ta variable de maximum avec le premier &#233;l&#233;ment du tableau.</p>
+        <ul>
+        <li>Fichier : <code>defi03.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi03.c -o defi03</code></li>
+        <li>Ex&#233;cution : <code>./defi03</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Maximum : 12</code></pre>
+        <h2 id="defi-04">D&#233;fi 4 - Copier un tableau</h2>
+        <p>D&#233;clare un tableau source <code>{2, 4, 6, 8}</code> et un tableau destination de quatre entiers. Copie chaque &#233;l&#233;ment du tableau source dans le tableau destination &#224; l’aide d’une boucle, puis affiche le tableau destination.</p>
+        <ul>
+        <li>Fichier : <code>defi04.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi04.c -o defi04</code></li>
+        <li>Ex&#233;cution : <code>./defi04</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>2 4 6 8</code></pre>
+        <h2 id="defi-05">D&#233;fi 5 - Afficher un tableau &#224; deux dimensions</h2>
+        <p>D&#233;clare le tableau suivant :</p>
+        <pre><code>int grille[2][3] = {{1, 2, 3}, {4, 5, 6}};</code></pre>
+        <p>Utilise deux boucles imbriqu&#233;es pour l’afficher sous forme de deux lignes.</p>
+        <ul>
+        <li>Fichier : <code>defi05.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi05.c -o defi05</code></li>
+        <li>Ex&#233;cution : <code>./defi05</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>1 2 3
+4 5 6</code></pre>
+        <h2 id="defi-06">D&#233;fi 6 - Additionner les valeurs d’une matrice</h2>
+        <p>Avec le tableau <code>{{1, 2, 3}, {4, 5, 6}}</code>, calcule et affiche la somme de toutes les valeurs. Parcours toutes les lignes et colonnes avec deux boucles imbriqu&#233;es.</p>
+        <ul>
+        <li>Fichier : <code>defi06.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi06.c -o defi06</code></li>
+        <li>Ex&#233;cution : <code>./defi06</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme : 21</code></pre>
+        <h2 id="defi-07">D&#233;fi 7 - Additionner la diagonale d’une matrice</h2>
+        <p>D&#233;clare une matrice carr&#233;e de trois lignes et trois colonnes contenant les lignes <code>{1, 2, 3}</code>, <code>{4, 5, 6}</code> et <code>{7, 8, 9}</code>. Additionne les &#233;l&#233;ments de sa diagonale principale, c’est-&#224;-dire ceux dont l’indice de ligne est &#233;gal &#224; l’indice de colonne.</p>
+        <ul>
+        <li>Fichier : <code>defi07.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi07.c -o defi07</code></li>
+        <li>Ex&#233;cution : <code>./defi07</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme de la diagonale : 15</code></pre>
+        <h2 id="defi-08">D&#233;fi 8 - Afficher une cha&#238;ne de caract&#232;res</h2>
+        <p>D&#233;clare le tableau de caract&#232;res <code>&quot;Bonjour&quot;</code>. Affiche la cha&#238;ne compl&#232;te avec <code>%s</code>, puis affiche son premier caract&#232;re avec <code>%c</code>.</p>
+        <ul>
+        <li>Fichier : <code>defi08.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi08.c -o defi08</code></li>
+        <li>Ex&#233;cution : <code>./defi08</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Mot : Bonjour
+Premi&#232;re lettre : B</code></pre>
+        <h2 id="defi-09">D&#233;fi 9 - Compter les caract&#232;res d’une cha&#238;ne</h2>
+        <p>D&#233;clare le tableau de caract&#232;res <code>&quot;pointeur&quot;</code>. Sans utiliser <code>strlen</code>, parcours la cha&#238;ne jusqu’au caract&#232;re nul <code>\0</code> et compte ses caract&#232;res. Affiche la longueur obtenue.</p>
+        <ul>
+        <li>Fichier : <code>defi09.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi09.c -o defi09</code></li>
+        <li>Ex&#233;cution : <code>./defi09</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Longueur : 8</code></pre>
+        <h2 id="defi-10">D&#233;fi 10 - Compter les voyelles dans une cha&#238;ne</h2>
+        <p>Dans la cha&#238;ne <code>&quot;programmation&quot;</code>, compte les voyelles <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code> et <code>u</code>, puis affiche leur nombre. Pour ce d&#233;fi, toutes les lettres sont en minuscules.</p>
+        <ul>
+        <li>Fichier : <code>defi10.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi10.c -o defi10</code></li>
+        <li>Ex&#233;cution : <code>./defi10</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Voyelles : 5</code></pre>
+        <h2 id="defi-11">D&#233;fi 11 - Parcourir une cha&#238;ne avec un pointeur</h2>
+        <p>D&#233;clare un pointeur vers le texte constant <code>&quot;C facile&quot;</code>. Parcours la cha&#238;ne en avan&#231;ant le pointeur d’un caract&#232;re &#224; la fois et affiche chaque caract&#232;re. Le texte ne doit pas &#234;tre modifi&#233;.</p>
+        <ul>
+        <li>Fichier : <code>defi11.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi11.c -o defi11</code></li>
+        <li>Ex&#233;cution : <code>./defi11</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>C facile</code></pre>
+        <h2 id="defi-12">D&#233;fi 12 - Modifier un tableau de caract&#232;res avec un pointeur</h2>
+        <p>D&#233;clare le tableau de caract&#232;res modifiable <code>&quot;chat&quot;</code>. Cr&#233;e un pointeur vers son premier &#233;l&#233;ment et utilise ce pointeur pour remplacer la premi&#232;re lettre par <code>C</code>. Affiche ensuite le mot.</p>
+        <ul>
+        <li>Fichier : <code>defi12.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi12.c -o defi12</code></li>
+        <li>Ex&#233;cution : <code>./defi12</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Chat</code></pre>
+        <h2 id="defi-13">D&#233;fi 13 - Lire une valeur &#224; travers un pointeur</h2>
+        <p>D&#233;clare un entier &#233;gal &#224; 42 et un pointeur qui contient son adresse. Affiche la valeur de l’entier en passant par le pointeur.</p>
+        <ul>
+        <li>Fichier : <code>defi13.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi13.c -o defi13</code></li>
+        <li>Ex&#233;cution : <code>./defi13</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Valeur : 42</code></pre>
+        <h2 id="defi-14">D&#233;fi 14 - Modifier une variable avec un pointeur</h2>
+        <p>&#201;cris une fonction <code>void ajouterUn(int *nombre)</code> qui ajoute 1 &#224; l’entier point&#233;. Dans <code>main</code>, appelle cette fonction avec l’adresse d’une variable initialis&#233;e &#224; 10, puis affiche cette variable.</p>
+        <ul>
+        <li>Fichier : <code>defi14.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi14.c -o defi14</code></li>
+        <li>Ex&#233;cution : <code>./defi14</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Valeur apr&#232;s l’appel : 11</code></pre>
+        <h2 id="defi-15">D&#233;fi 15 - Observer le passage par valeur</h2>
+        <p>D&#233;clare un entier &#233;gal &#224; 7. &#201;cris une fonction <code>void mettreAZero(int nombre)</code> qui affecte 0 &#224; son param&#232;tre. Appelle cette fonction, puis affiche la variable originale depuis <code>main</code>. Observe si elle a chang&#233;.</p>
+        <ul>
+        <li>Fichier : <code>defi15.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi15.c -o defi15</code></li>
+        <li>Ex&#233;cution : <code>./defi15</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Apr&#232;s l’appel : 7</code></pre>
+        <h2 id="defi-16">D&#233;fi 16 - &#201;changer deux valeurs avec des pointeurs</h2>
+        <p>&#201;cris une fonction <code>void echanger(int *a, int *b)</code> qui &#233;change les valeurs des deux entiers point&#233;s. Dans <code>main</code>, appelle-la avec les adresses de deux variables initialis&#233;es &#224; 3 et 8, puis affiche les valeurs apr&#232;s l’&#233;change.</p>
+        <ul>
+        <li>Fichier : <code>defi16.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi16.c -o defi16</code></li>
+        <li>Ex&#233;cution : <code>./defi16</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>a : 8
+b : 3</code></pre>
+        <h2 id="defi-17">D&#233;fi 17 - Additionner un tableau dans une fonction</h2>
+        <p>&#201;cris une fonction <code>int sommeTableau(const int valeurs[], int taille)</code> qui re&#231;oit un tableau et sa taille, puis renvoie la somme de ses &#233;l&#233;ments. Appelle-la avec <code>{2, 4, 6, 8}</code> et affiche la somme.</p>
+        <ul>
+        <li>Fichier : <code>defi17.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi17.c -o defi17</code></li>
+        <li>Ex&#233;cution : <code>./defi17</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme : 20</code></pre>
+        <h2 id="defi-18">D&#233;fi 18 - Parcourir un tableau par arithm&#233;tique de pointeurs</h2>
+        <p>D&#233;clare le tableau <code>{10, 20, 30}</code> et un pointeur vers son premier &#233;l&#233;ment. Affiche ses trois valeurs en utilisant l’arithm&#233;tique de pointeurs, par exemple <code>*(pointeur + indice)</code>, sans utiliser la notation <code>valeurs[indice]</code> pour lire les &#233;l&#233;ments.</p>
+        <ul>
+        <li>Fichier : <code>defi18.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi18.c -o defi18</code></li>
+        <li>Ex&#233;cution : <code>./defi18</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>10 20 30</code></pre>
+        <h2 id="defi-19">D&#233;fi 19 - Passer une matrice &#224; une fonction</h2>
+        <p>&#201;cris une fonction <code>int sommeMatrice(int valeurs[][3], int nombreLignes)</code> qui renvoie la somme d’une matrice ayant trois colonnes. Appelle-la avec la matrice <code>{{1, 2, 3}, {4, 5, 6}}</code> et affiche le r&#233;sultat.</p>
+        <ul>
+        <li>Fichier : <code>defi19.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi19.c -o defi19</code></li>
+        <li>Ex&#233;cution : <code>./defi19</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Somme de la matrice : 21</code></pre>
+        <h2 id="defi-20">D&#233;fi 20 - Lire une valeur avec un pointeur vers un pointeur</h2>
+        <p>D&#233;clare un entier &#233;gal &#224; 42, un pointeur vers cet entier, puis un pointeur vers ce pointeur. Affiche l’entier en d&#233;r&#233;f&#233;ren&#231;ant deux fois le dernier pointeur.</p>
+        <ul>
+        <li>Fichier : <code>defi20.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi20.c -o defi20</code></li>
+        <li>Ex&#233;cution : <code>./defi20</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Valeur : 42</code></pre>
+        <h2 id="defi-21">D&#233;fi 21 - Modifier un pointeur avec un pointeur vers un pointeur</h2>
+        <p>D&#233;clare deux entiers, 5 et 9, puis un pointeur qui d&#233;signe le premier. &#201;cris une fonction <code>void changerCible(int **pointeur, int *nouvelleCible)</code> qui fait pointer ce pointeur vers le second entier. Appelle la fonction en lui passant l’adresse du pointeur, puis affiche la valeur d&#233;sormais point&#233;e.</p>
+        <ul>
+        <li>Fichier : <code>defi21.c</code></li>
+        <li>Compilation : <code>gcc -Wall -pedantic -Werror -Wextra -std=gnu89 defi21.c -o defi21</code></li>
+        <li>Ex&#233;cution : <code>./defi21</code></li>
+        </ul>
+        <p>Sortie attendue :</p>
+        <pre><code>Valeur point&#233;e : 9</code></pre>
+      </article>
+    </main>
+  </body>
+</html>
+
+
+

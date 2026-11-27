@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cours interactif et progressif sur les bases du langage C.">
+    <title>Cours C : bases 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="cours-c-bases-2.js" defer></script>
+  </head>
+  <body class="course-page">
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+    <header class="site-header">
+      <a class="site-name" href="index.html">Atelier de programmation</a>
+      <a class="course-challenges-link" href="defis-c-bases-2.html">Voir les 30 défis →</a>
+    </header>
+    <div class="course-layout">
+      <aside class="course-sidebar">
+        <p class="eyebrow">Guide pas à pas</p>
+        <h2>Sommaire</h2>
+        <nav aria-label="Sommaire du cours" id="course-navigation">
+          <a href="#depart">1. Le programme C</a>
+          <a href="#variables">2. Déclarer et initialiser</a>
+          <a href="#types">3. Types et constantes</a>
+          <a href="#printf">4. Afficher avec printf</a>
+          <a href="#tableaux">5. Tableaux et chaînes</a>
+          <a href="#conditions">6. Conditions</a>
+          <a href="#boucles">7. Boucles</a>
+          <a href="#controle">8. break et continue</a>
+          <a href="#imbriquees">9. Boucles imbriquées</a>
+          <a href="#fonctions">10. Fonctions</a>
+          <a href="#algorithmes">11. Petits algorithmes</a>
+          <a href="#visualiseur">Visualiser le programme</a>
+        </nav>
+      </aside>
+      <main class="course-main">
+        <section class="course-hero">
+          <p class="eyebrow">Cours de révision pour débuter</p>
+          <h1>Comprendre les bases du C, pas à pas</h1>
+          <p>Lis une idée à la fois, regarde le code, puis réponds aux deux petites questions. Chaque réponse affiche une explication, même si tu t’es trompé.</p>
+          <div class="hero-chips"><span>11 notions</span><span>22 mini-quiz</span><span>Visualisation de code</span></div>
+        </section>
+
+        <section class="course-card" id="depart">
+          <div class="section-number">01</div><div class="section-content">
+            <h2>Un programme C commence dans main</h2>
+            <p>Un programme est une liste d’instructions. Quand tu le lances, l’exécution commence dans la fonction <code>main</code>. Dans nos programmes, <code>return 0</code> indique qu’ils se sont terminés correctement.</p>
+            <div class="analogy"><span class="analogy-icon">🚪</span><p><strong>Image mentale :</strong> <code>main</code> est la porte d’entrée. Le programme commence là, puis suit les instructions dans l’ordre.</p></div>
+            <div class="syntax-example"><div><span class="example-label">Syntaxe minimale</span><pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    printf("Bonjour !\n");
+    return 0;
+}</code></pre></div><div><span class="example-label">Lecture</span><ol><li><code>stdio.h</code> permet d’utiliser <code>printf</code></li><li>Le programme entre dans <code>main</code></li><li>Le message s’affiche</li><li><code>return 0</code> termine <code>main</code></li></ol></div></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="b" data-explanation="main est le point de départ habituel d’un programme C autonome."><p class="question-title">QCM · Où commence l’exécution ?</p><label><input type="radio" name="q1" value="a"> Dans printf</label><label><input type="radio" name="q1" value="b"> Dans main</label><label><input type="radio" name="q1" value="c"> Dans la première variable</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="return 0 termine main en indiquant que le programme s’est exécuté sans signaler d’erreur."><p class="question-title">Vrai ou faux · <code>return 0</code> termine <code>main</code>.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="variables">
+          <div class="section-number">02</div><div class="section-content">
+            <h2>Déclarer, initialiser, puis modifier</h2>
+            <p><strong>Déclarer</strong>, c’est annoncer qu’une variable existe et préciser son type. <strong>Initialiser</strong>, c’est lui donner sa première valeur. Une <strong>affectation</strong> peut ensuite remplacer cette valeur.</p>
+            <div class="analogy"><span class="analogy-icon">📦</span><p><strong>Image mentale :</strong> déclarer, c’est poser une boîte étiquetée « score ». Initialiser, c’est mettre 0 dedans. Affecter 8 ensuite, c’est remplacer le contenu.</p></div>
+            <div class="syntax-example"><div><span class="example-label">Trois moments</span><pre><code>int score;       /* déclaration */
+score = 0;       /* initialisation */
+score = 8;       /* nouvelle affectation */</code></pre></div><div><span class="example-label">En une ligne</span><pre><code>int vies = 3;</code></pre><p>Cette ligne déclare <code>vies</code> et l’initialise à 3.</p></div></div>
+            <p class="warning-note">Une variable locale non initialisée n’a pas de valeur utilisable garantie. Donne-lui une valeur avant de la lire.</p>
+            <div class="memory-demo"><div class="memory-demo-heading"><div><span class="example-label">Manipule la boîte « score »</span><p>Choisis une étape pour voir son état mémoire.</p></div><div class="memory-visual" aria-live="polite"><span id="memory-label">Pas encore déclarée</span><strong id="memory-value">—</strong></div></div><div class="demo-buttons"><button type="button" data-memory="declare">1. Déclarer</button><button type="button" data-memory="initialize">2. Initialiser à 0</button><button type="button" data-memory="assign">3. Affecter 8</button><button type="button" data-memory="reset">Recommencer</button></div><p class="demo-explanation" id="memory-explanation" aria-live="polite">Commence par déclarer la variable.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="c" data-explanation="La déclaration décrit le nom et le type. L’initialisation donne la première valeur."><p class="question-title">QCM · Que fait <code>int score;</code> ?</p><label><input type="radio" name="q2" value="a"> Elle met score à 0</label><label><input type="radio" name="q2" value="b"> Elle affiche score</label><label><input type="radio" name="q2" value="c"> Elle déclare un entier sans valeur initiale</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="faux" data-explanation="La déclaration seule ne donne aucune valeur à score. Il faut l’initialiser avant de le lire."><p class="question-title">Vrai ou faux · Après <code>int score;</code>, score vaut toujours 0.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="types">
+          <div class="section-number">03</div><div class="section-content">
+            <h2>Le type indique ce que contient la variable</h2>
+            <p>Le type aide le compilateur à savoir comment représenter une valeur et comment l’utiliser.</p>
+            <div class="type-grid"><div><code>int</code><span>entier</span><small>42, -3</small></div><div><code>long int</code><span>entier de grande capacité</span><small>1234567890L</small></div><div><code>float</code><span>nombre décimal</span><small>12.5f</small></div><div><code>char</code><span>un caractère</span><small>'A'</small></div><div><code>char mot[]</code><span>une chaîne</span><small>"Bonjour"</small></div><div><code>int valeurs[]</code><span>plusieurs entiers</span><small>{1, 2, 3}</small></div></div>
+            <div class="analogy"><span class="analogy-icon">🏷️</span><p><strong>Image mentale :</strong> le type est l’étiquette d’une boîte. Le programme doit savoir quel genre de valeur elle contient.</p></div>
+            <p><code>const</code> rend une valeur non modifiable après son initialisation. Exemple : <code>const int LIMITE = 10;</code>. C’est utile pour une limite ou une valeur qui doit rester fixe.</p>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="a" data-explanation="%ld correspond à un argument de type long int. Le format doit correspondre au type."><p class="question-title">QCM · Quel format convient à <code>long int distance</code> ?</p><label><input type="radio" name="q3" value="a"> %ld</label><label><input type="radio" name="q3" value="b"> %c</label><label><input type="radio" name="q3" value="c"> %s</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="On écrit un caractère entre apostrophes simples. Une chaîne d’un caractère comme &quot;A&quot; utilise des guillemets doubles."><p class="question-title">Vrai ou faux · <code>char initiale = 'A';</code> stocke un caractère.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="printf">
+          <div class="section-number">04</div><div class="section-content">
+            <h2>printf : afficher du texte et des valeurs</h2>
+            <p><code>printf</code> écrit à l’écran. Les codes du texte de format sont remplacés par les valeurs placées après la virgule, dans le même ordre.</p>
+            <div class="format-table"><div><strong>Format</strong><strong>Type affiché</strong><strong>Exemple</strong><span><code>%d</code></span><span><code>int</code></span><span>entier</span><span><code>%ld</code></span><span><code>long int</code></span><span>entier long</span><span><code>%f</code></span><span><code>float</code></span><span>12.500000</span><span><code>%.2f</code></span><span><code>float</code></span><span>12.50</span><span><code>%c</code></span><span><code>char</code></span><span>une lettre</span><span><code>%s</code></span><span>chaîne</span><span>un mot</span></div></div>
+            <pre><code>int points = 12;
+char lettre = 'C';
+printf("Points : %d\nLettre : %c\n", points, lettre);</code></pre>
+            <div class="terminal-example"><span>Terminal</span><code>Points : 12<br>Lettre : C</code></div>
+            <p><code>\n</code> fait passer à la ligne suivante. Avec <code>printf</code>, un <code>float</code> est automatiquement converti en <code>double</code> pour l’appel, donc <code>%f</code> est correct.</p>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="c" data-explanation="%c affiche un caractère. %s attend une chaîne terminée par le caractère nul."><p class="question-title">QCM · Quel format affiche une variable <code>char lettre</code> ?</p><label><input type="radio" name="q4" value="a"> %s</label><label><input type="radio" name="q4" value="b"> %d</label><label><input type="radio" name="q4" value="c"> %c</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="\\n est le caractère spécial de nouvelle ligne reconnu dans une chaîne de format."><p class="question-title">Vrai ou faux · <code>\n</code> fait passer à la ligne suivante.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="tableaux">
+          <div class="section-number">05</div><div class="section-content">
+            <h2>Tableaux : plusieurs cases sous un même nom</h2>
+            <p>Un tableau contient plusieurs valeurs du même type. Les indices commencent à 0. Pour quatre éléments, les indices sont 0, 1, 2 et 3.</p>
+            <pre><code>int notes[4] = {12, 15, 9, 18};
+printf("Première note : %d\n", notes[0]);
+printf("Dernière note : %d\n", notes[3]);</code></pre>
+            <div class="array-visual"><div class="array-indexes"><span>indice 0</span><span>indice 1</span><span>indice 2</span><span>indice 3</span></div><div class="array-cells"><span>12</span><span>15</span><span>9</span><span>18</span></div></div>
+            <h3>Chaîne de caractères</h3><p>Une chaîne C est un tableau de caractères qui se termine par <code>\0</code>. Les guillemets doubles ajoutent ce marqueur de fin.</p>
+            <pre><code>char mot[] = "chat";
+printf("%s\n", mot);
+printf("Première lettre : %c\n", mot[0]);</code></pre>
+            <h3>Tableau à deux dimensions</h3><p>Un tableau 2D ressemble à une grille. On donne d’abord l’indice de ligne, puis celui de colonne.</p>
+            <pre><code>int grille[2][3] = {{1, 2, 3}, {4, 5, 6}};
+printf("%d\n", grille[1][2]); /* affiche 6 */</code></pre>
+            <div class="analogy"><span class="analogy-icon">🗄️</span><p><strong>Image mentale :</strong> un tableau simple est une rangée de cases; un tableau 2D est une grille repérée par lignes et colonnes.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="a" data-explanation="Le premier indice est 0. Pour quatre cases, la dernière a l’indice 3."><p class="question-title">QCM · Quel est l’indice du premier élément de <code>notes</code> ?</p><label><input type="radio" name="q5" value="a"> 0</label><label><input type="radio" name="q5" value="b"> 1</label><label><input type="radio" name="q5" value="c"> 4</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="faux" data-explanation="notes[4] dépasse le tableau. Ses indices vont de 0 à 3. Un accès hors limites a un comportement indéfini en C."><p class="question-title">Vrai ou faux · Pour lire la dernière note, on écrit <code>notes[4]</code>.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="conditions">
+          <div class="section-number">06</div><div class="section-content">
+            <h2>Conditions : choisir quelle instruction exécuter</h2>
+            <p>Une condition pose une question dont la réponse est vraie ou fausse. <code>if</code> teste un cas, <code>else if</code> un autre, et <code>else</code> le cas restant.</p>
+            <pre><code>int note = 14;
+if (note >= 10) {
+    printf("Réussi\n");
+} else {
+    printf("À retravailler\n");
+}</code></pre>
+            <div class="flow-visual"><div class="flow-start">Début</div><span class="flow-arrow">↓</span><div class="flow-question">note &gt;= 10 ?</div><div class="flow-branches"><div><span>Oui</span><strong>Afficher « Réussi »</strong></div><div><span>Non</span><strong>Afficher « À retravailler »</strong></div></div><span class="flow-arrow">↓</span><div class="flow-start">Suite du programme</div></div>
+            <p><code>==</code> teste l’égalité; <code>=</code> affecte une valeur. <code>&amp;&amp;</code> signifie « et », <code>||</code> signifie « ou ». L’opérateur <code>%</code> donne le reste d’une division : <code>nombre % 2 == 0</code> teste si un nombre est pair.</p>
+            <div class="analogy"><span class="analogy-icon">🚦</span><p><strong>Image mentale :</strong> si le feu est vert (condition vraie), prends une route; sinon, prends l’autre.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="b" data-explanation="Deux signes égal forment une comparaison. Un signe égal seul affecte une valeur."><p class="question-title">QCM · Quel opérateur teste si <code>a</code> vaut 5 ?</p><label><input type="radio" name="q6" value="a"> a = 5</label><label><input type="radio" name="q6" value="b"> a == 5</label><label><input type="radio" name="q6" value="c"> a != 5</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="Le bloc else est choisi lorsque le test du if est faux."><p class="question-title">Vrai ou faux · <code>else</code> s’exécute lorsque le test du <code>if</code> est faux.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="boucles">
+          <div class="section-number">07</div><div class="section-content">
+            <h2>Boucles : répéter des instructions</h2>
+            <p>Une boucle répète un bloc tant que sa règle de continuation est vraie. Il faut faire évoluer la variable de contrôle pour que la boucle puisse finir.</p>
+            <h3>for : quand les étapes sont connues</h3><pre><code>int i;
+for (i = 0; i <= 3; i++) {
+    printf("%d\n", i);
+}</code></pre>
+            <p>Les trois parties donnent la valeur de départ, la condition avant chaque tour et la mise à jour à la fin du tour.</p>
+            <h3>while : tester avant le tour</h3><pre><code>int i = 0;
+while (i < 4) {
+    printf("%d\n", i);
+    i++;
+}</code></pre>
+            <h3>do while : faire un tour, puis tester</h3><pre><code>int i = 1;
+do {
+    printf("%d\n", i);
+    i++;
+} while (i <= 3);</code></pre>
+            <p><code>while</code> peut faire zéro tour. <code>do while</code> fait toujours au moins un tour.</p>
+            <div class="loop-demo"><div><span class="example-label">Mini-simulateur · i de 0 à 3</span><p id="loop-line" aria-live="polite">Prêt à démarrer</p></div><div class="loop-variable"><span>i</span><strong id="loop-value">—</strong></div><div class="loop-track" id="loop-track"><span>0</span><span>1</span><span>2</span><span>3</span></div><div class="demo-buttons"><button type="button" id="loop-next">Exécuter une étape</button><button type="button" id="loop-reset">Recommencer</button></div></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="a" data-explanation="i++ ajoute 1 à i à la fin du tour, avant le test du tour suivant."><p class="question-title">QCM · Que fait <code>i++</code> dans la boucle ?</p><label><input type="radio" name="q7" value="a"> Ajoute 1 à i</label><label><input type="radio" name="q7" value="b"> Met i à zéro</label><label><input type="radio" name="q7" value="c"> Arrête la boucle</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="faux" data-explanation="do while teste après le corps : il réalise donc au moins une répétition."><p class="question-title">Vrai ou faux · <code>do while</code> peut ne faire aucun tour.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="controle">
+          <div class="section-number">08</div><div class="section-content">
+            <h2>break et continue : agir sur une boucle</h2>
+            <p><code>break</code> sort de la boucle la plus proche. <code>continue</code> saute le reste du tour et passe au suivant.</p>
+            <pre><code>int i;
+for (i = 1; i <= 6; i++) {
+    if (i == 3) continue;
+    if (i == 5) break;
+    printf("%d ", i);
+}</code></pre>
+            <div class="terminal-example"><span>Affiché</span><code>1 2 4</code></div>
+            <p>Le tour où <code>i</code> vaut 3 est sauté. Quand <code>i</code> vaut 5, la boucle s’arrête; 6 n’est pas visité.</p>
+            <div class="analogy"><span class="analogy-icon">🚌</span><p><strong>Image mentale :</strong> <code>continue</code> saute un arrêt; <code>break</code> descend du bus et termine le trajet.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="c" data-explanation="continue saute l’instruction printf pour le tour où i vaut 3."><p class="question-title">QCM · Pourquoi le 3 n’est-il pas affiché ?</p><label><input type="radio" name="q8" value="a"> À cause de break</label><label><input type="radio" name="q8" value="b"> La boucle s’arrête à 3</label><label><input type="radio" name="q8" value="c"> continue saute l’affichage de ce tour</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="faux" data-explanation="continue garde la boucle en cours et commence le prochain tour. break, lui, la quitte."><p class="question-title">Vrai ou faux · <code>continue</code> quitte définitivement la boucle.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="imbriquees">
+          <div class="section-number">09</div><div class="section-content">
+            <h2>Boucles imbriquées : lignes et colonnes</h2>
+            <p>Une boucle imbriquée est placée à l’intérieur d’une autre. Pour chaque tour de la boucle extérieure, la boucle intérieure fait tous ses tours. Cela sert à parcourir une grille ou dessiner une forme.</p>
+            <pre><code>int ligne;
+int colonne;
+for (ligne = 0; ligne < 3; ligne++) {
+    for (colonne = 0; colonne < 5; colonne++) {
+        printf("*");
+    }
+    printf("\n");
+}</code></pre>
+            <p>La boucle extérieure choisit une ligne. La boucle intérieure dessine les cinq étoiles de cette ligne. Ensuite, <code>printf("\\n")</code> passe à la suivante.</p>
+            <div class="grid-visual" id="grid-visual" aria-label="Grille interactive de trois lignes et cinq colonnes">
+              <button type="button" data-row="0" data-col="0">1,1</button><button type="button" data-row="0" data-col="1">1,2</button><button type="button" data-row="0" data-col="2">1,3</button><button type="button" data-row="0" data-col="3">1,4</button><button type="button" data-row="0" data-col="4">1,5</button>
+              <button type="button" data-row="1" data-col="0">2,1</button><button type="button" data-row="1" data-col="1">2,2</button><button type="button" data-row="1" data-col="2">2,3</button><button type="button" data-row="1" data-col="3">2,4</button><button type="button" data-row="1" data-col="4">2,5</button>
+              <button type="button" data-row="2" data-col="0">3,1</button><button type="button" data-row="2" data-col="1">3,2</button><button type="button" data-row="2" data-col="2">3,3</button><button type="button" data-row="2" data-col="3">3,4</button><button type="button" data-row="2" data-col="4">3,5</button>
+            </div>
+            <p class="demo-explanation" id="grid-explanation" aria-live="polite">Clique une case pour voir ses indices de ligne et colonne.</p>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="b" data-explanation="La boucle intérieure dessine 5 étoiles pour chacune des 3 lignes : 3 × 5 = 15."><p class="question-title">QCM · Combien d’étoiles sont affichées au total ?</p><label><input type="radio" name="q9" value="a"> 8</label><label><input type="radio" name="q9" value="b"> 15</label><label><input type="radio" name="q9" value="c"> 3</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="Toute la boucle intérieure s’exécute pour la ligne actuelle avant le tour suivant de la boucle extérieure."><p class="question-title">Vrai ou faux · La boucle intérieure finit avant que la boucle extérieure passe à la ligne suivante.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="fonctions">
+          <div class="section-number">10</div><div class="section-content">
+            <h2>Fonctions : donner un nom à une tâche</h2>
+            <p>Une fonction regroupe des instructions. Elle peut recevoir des <strong>paramètres</strong> et renvoyer une <strong>valeur</strong>. Le type placé avant le nom indique ce qu’elle renvoie. <code>void</code> signifie « aucune valeur »; dans les parenthèses, <code>void</code> signifie « aucun paramètre ».</p>
+            <div class="function-cards">
+              <div><span class="example-label">Pas de paramètre, pas de retour</span><pre><code>void direBonjour(void) {
+    printf("Bonjour !\n");
+}</code></pre><p>Appel : <code>direBonjour();</code></p></div>
+              <div><span class="example-label">Paramètre int, pas de retour</span><pre><code>void afficherDouble(int nombre) {
+    printf("%d\n", nombre * 2);
+}</code></pre><p>Appel : <code>afficherDouble(6);</code></p></div>
+              <div><span class="example-label">Paramètres et retour int</span><pre><code>int additionner(int a, int b) {
+    return a + b;
+}</code></pre><p>Appel : <code>resultat = additionner(3, 4);</code></p></div>
+              <div><span class="example-label">Retour char, pas de paramètre</span><pre><code>char obtenirLettre(void) {
+    return 'M';
+}</code></pre><p>Appel : <code>lettre = obtenirLettre();</code></p></div>
+              <div><span class="example-label">Paramètre et retour char</span><pre><code>char choisirLettre(char lettre) {
+    return lettre;
+}</code></pre><p>Appel : <code>lettre = choisirLettre('A');</code></p></div>
+            </div>
+            <p>Une fonction qui renvoie une valeur la transmet avec <code>return</code>. On peut stocker cette valeur, l’afficher ou l’utiliser dans une condition.</p>
+            <div class="analogy"><span class="analogy-icon">🍳</span><p><strong>Image mentale :</strong> une fonction est une recette. Les paramètres sont les ingrédients; la valeur retournée est le résultat. Une fonction <code>void</code> réalise une action sans rendre de résultat.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="a" data-explanation="Le premier void indique que la fonction ne renvoie rien; nombre reste un paramètre int."><p class="question-title">QCM · Que signifie le premier <code>void</code> dans <code>void afficher(int nombre)</code> ?</p><label><input type="radio" name="q10" value="a"> Aucun retour de valeur</label><label><input type="radio" name="q10" value="b"> La fonction renvoie zéro</label><label><input type="radio" name="q10" value="c"> Aucun paramètre</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="Une fonction de type int peut renvoyer un entier avec return."><p class="question-title">Vrai ou faux · Une fonction <code>int</code> peut renvoyer un entier avec <code>return</code>.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card" id="algorithmes">
+          <div class="section-number">11</div><div class="section-content">
+            <h2>Quelques recettes classiques</h2>
+            <h3>Compter et filtrer</h3><p>Pour compter de 0 à 10, augmente un compteur d’une unité. Pour afficher les pairs seulement, augmente-le de 2 ou teste <code>nombre % 2 == 0</code>.</p>
+            <pre><code>int nombre;
+for (nombre = 0; nombre <= 10; nombre++) {
+    printf("%d ", nombre);
+}</code></pre>
+            <h3>FizzBuzz : tester les cas dans le bon ordre</h3><p>Teste d’abord le cas divisible par 3 et 5. Sinon, 15 serait déjà classé comme multiple de 3.</p>
+            <pre><code>if (nombre % 3 == 0 && nombre % 5 == 0) {
+    printf("FizzBuzz\n");
+} else if (nombre % 3 == 0) {
+    printf("Fizz\n");
+} else if (nombre % 5 == 0) {
+    printf("Buzz\n");
+} else {
+    printf("%d\n", nombre);
+}</code></pre>
+            <h3>Palindrome : comparer les extrémités</h3><p>Un palindrome se lit pareil dans les deux sens. Compare les caractères qui se font face, puis rapproche-toi du centre. Commence par un mot en minuscules, sans espaces ni ponctuation.</p>
+            <pre><code>int gauche = 0;
+int droite = longueur - 1;
+int palindrome = 1;
+while (gauche < droite) {
+    if (mot[gauche] != mot[droite]) {
+        palindrome = 0;
+        break;
+    }
+    gauche++;
+    droite--;
+}</code></pre>
+            <div class="analogy"><span class="analogy-icon">🪞</span><p><strong>Image mentale :</strong> un palindrome est comme un miroir : les lettres qui se font face doivent être identiques.</p></div>
+            <div class="knowledge-check">
+              <div class="quick-question" data-answer="c" data-explanation="15 est divisible par 3 et par 5. Tester ce cas en premier évite de n’afficher que Fizz."><p class="question-title">QCM · Pourquoi tester FizzBuzz avant Fizz ?</p><label><input type="radio" name="q11" value="a"> Pour réduire les boucles</label><label><input type="radio" name="q11" value="b"> Parce que printf l’exige</label><label><input type="radio" name="q11" value="c"> Pour reconnaître 15 comme multiple de 3 et 5</label><button class="validate-question" type="button">Vérifier</button><p class="quiz-feedback" aria-live="polite"></p></div>
+              <div class="quick-question" data-answer="vrai" data-explanation="Comparer les caractères symétriques et avancer vers le centre permet de tester un palindrome."><p class="question-title">Vrai ou faux · On peut tester un palindrome en comparant ses deux extrémités.</p><div class="true-false"><button type="button" data-choice="vrai">Vrai</button><button type="button" data-choice="faux">Faux</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+            </div>
+        </div></section>
+
+        <section class="course-card visualizer-section" id="visualiseur">
+          <div class="section-number">▶</div><div class="section-content">
+            <h2>Visualiser l’exécution, une étape à la fois</h2>
+            <p>Choisis un exemple, puis avance et recule dans l’exécution. Python Tutor montre la ligne active, les variables, la mémoire et les appels de fonctions. Tu peux aussi modifier le code dans l’outil.</p>
+            <label class="visualizer-select-label" for="visualizer-example">Exemple à visualiser</label>
+            <select id="visualizer-example"><option value="variable">Déclaration, initialisation et affectation</option><option value="loop">Une boucle qui fait évoluer i</option><option value="array">Lire les cases d’un tableau</option><option value="function">Entrer dans une fonction et revenir</option></select>
+            <div class="visualizer-frame-wrap"><iframe id="python-tutor-frame" title="Visualiseur pas à pas de code C par Python Tutor" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+            <p class="visualizer-note">Python Tutor visualise du C en s’appuyant sur GCC 9.3 et C17 avec extensions GNU. Les exemples ici utilisent des constructions compatibles avec gnu89. C’est un outil pour comprendre de petits programmes, pas un terminal Ubuntu complet.</p>
+            <p><a href="https://pythontutor.com/visualize.html?via=ai" target="_blank" rel="noopener">Ouvrir Python Tutor dans un nouvel onglet</a></p>
+          </div>
+        </section>
+        <section class="course-finish"><h2>Tu as terminé la révision !</h2><p>Choisis une notion dans le sommaire pour la revoir, ou passe à la pratique.</p><a class="next-course-link" href="defis-c-bases-2.html">Aller aux 30 défis C →</a><a class="next-course-link secondary-link" href="index.html">Retour à l’accueil</a></section>
+      </main>
+    </div>
+  </body>
+</html>

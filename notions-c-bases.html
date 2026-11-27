@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Révisions des notions de base du langage C avec exemples simples.">
+    <title>Révisions : notions de base en C</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="index.html">Atelier de programmation</a>
+    </header>
+
+    <main class="exercise-page">
+      <a class="back-link" href="index.html">← Toutes les pages</a>
+      <article class="markdown-body">
+        <p class="eyebrow">Guide de révision</p>
+        <h1>Les bases du langage C</h1>
+        <p>Cette page résume les notions essentielles avec de petits exemples. Les programmes sont indépendants : copie un exemple complet dans un fichier <code>.c</code>, compile-le, puis exécute-le.</p>
+
+        <nav class="topic-nav" aria-label="Sommaire de la page">
+          <p>Dans cette page</p>
+          <ul>
+            <li><a href="#variables">Variables et constantes</a></li>
+            <li><a href="#printf">Afficher avec printf</a></li>
+            <li><a href="#tableaux">Tableaux</a></li>
+            <li><a href="#conditions">Conditions</a></li>
+            <li><a href="#boucles">Boucles</a></li>
+            <li><a href="#fonctions">Fonctions</a></li>
+            <li><a href="#exercices">Exercices classiques</a></li>
+          </ul>
+        </nav>
+
+        <section id="variables">
+          <h2>1. Variables, caractères et constantes</h2>
+          <p>Une variable est un emplacement nommé qui contient une valeur. Son type indique quelle sorte de valeur elle peut stocker. En C, on déclare une variable avant de l’utiliser.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int age = 20;
+    char initiale = 'L';
+    const int LIMITE = 100;
+
+    printf("Âge : %d\n", age);
+    printf("Initiale : %c\n", initiale);
+    printf("Limite : %d\n", LIMITE);
+    return 0;
+}</code></pre>
+
+          <ul>
+            <li><code>int</code> représente un nombre entier, par exemple <code>20</code> ou <code>-3</code></li>
+            <li><code>char</code> représente un caractère, écrit entre apostrophes simples, par exemple <code>'L'</code></li>
+            <li><code>const</code> indique qu’une valeur ne doit pas être modifiée après son initialisation</li>
+            <li>Choisis des noms explicites et initialise les variables avant de lire leur valeur</li>
+          </ul>
+          <p class="note"><strong>À distinguer :</strong> <code>'A'</code> est un caractère. La chaîne de caractères <code>"A"</code> contient ce caractère puis le marqueur de fin <code>\0</code>.</p>
+        </section>
+
+        <section id="printf">
+          <h2>2. Afficher des valeurs avec printf</h2>
+          <p><code>printf</code> affiche du texte et peut insérer des valeurs à l’aide de spécificateurs. Chaque spécificateur doit correspondre au type de la valeur fournie.</p>
+
+          <table>
+            <thead><tr><th>Spécificateur</th><th>Valeur affichée</th><th>Exemple</th></tr></thead>
+            <tbody>
+              <tr><td><code>%d</code></td><td>Entier de type <code>int</code></td><td><code>printf("%d", nombre);</code></td></tr>
+              <tr><td><code>%c</code></td><td>Caractère de type <code>char</code></td><td><code>printf("%c", lettre);</code></td></tr>
+              <tr><td><code>%s</code></td><td>Chaîne de caractères</td><td><code>printf("%s", mot);</code></td></tr>
+              <tr><td><code>%%</code></td><td>Symbole pourcentage</td><td><code>printf("50%%");</code></td></tr>
+            </tbody>
+          </table>
+
+          <pre><code>int nombre = 7;
+char lettre = 'C';
+char mot[] = "bonjour";
+
+printf("Nombre : %d\n", nombre);
+printf("Lettre : %c\n", lettre);
+printf("Mot : %s\n", mot);</code></pre>
+
+          <div class="output"><strong>Affichage</strong><code>Nombre : 7<br>Lettre : C<br>Mot : bonjour</code></div>
+          <p><code>\n</code> provoque un retour à la ligne. Le texte de format et les valeurs doivent rester dans le même ordre : par exemple, <code>%d</code> reçoit ici <code>nombre</code>.</p>
+        </section>
+
+        <section id="tableaux">
+          <h2>3. Tableaux à une et deux dimensions</h2>
+          <h3>Tableau d’entiers</h3>
+          <p>Un tableau stocke plusieurs valeurs du même type. Les indices commencent à 0 : le premier élément est <code>valeurs[0]</code>.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int valeurs[] = {4, 7, 2, 9};
+    int nombreElements = (int)(sizeof valeurs / sizeof valeurs[0]);
+
+    for (int i = 0; i &lt; nombreElements; i++) {
+        printf("Élément %d : %d\n", i, valeurs[i]);
+    }
+    return 0;
+}</code></pre>
+
+          <p><code>sizeof valeurs</code> donne la taille totale du tableau en octets. En la divisant par la taille d’un élément, on obtient son nombre d’éléments. Cette méthode s’applique ici parce que <code>valeurs</code> est un vrai tableau dans cette fonction.</p>
+
+          <h3>Tableau de caractères</h3>
+          <p>Une chaîne C est un tableau de caractères qui se termine par le caractère spécial <code>\0</code>. Les guillemets doubles servent à écrire une chaîne.</p>
+
+          <pre><code>char mot[] = "chat";
+printf("%s\n", mot);
+printf("Première lettre : %c\n", mot[0]);</code></pre>
+
+          <h3>Tableau à deux dimensions</h3>
+          <p>Un tableau à deux dimensions peut représenter une grille. On utilise un indice pour la ligne et un autre pour la colonne.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int grille[2][3] = {{1, 2, 3}, {4, 5, 6}};
+
+    for (int ligne = 0; ligne &lt; 2; ligne++) {
+        for (int colonne = 0; colonne &lt; 3; colonne++) {
+            printf("%d ", grille[ligne][colonne]);
+        }
+        printf("\n");
+    }
+    return 0;
+}</code></pre>
+
+          <div class="output"><strong>Affichage</strong><code>1 2 3<br>4 5 6</code></div>
+
+          <p>Un tableau de caractères à deux dimensions peut contenir plusieurs mots de longueur maximale fixée :</p>
+          <pre><code>char animaux[2][10] = {"chat", "chien"};
+printf("%s\n", animaux[0]);
+printf("%s\n", animaux[1]);</code></pre>
+        </section>
+
+        <section id="conditions">
+          <h2>4. Conditions : if, else if et else</h2>
+          <p>Une condition permet d’exécuter un bloc seulement si une expression est vraie. <code>else if</code> ajoute un autre cas et <code>else</code> décrit le cas restant.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int note = 14;
+
+    if (note &lt; 0 || note &gt; 20) {
+        printf("Note invalide\n");
+    } else if (note &gt;= 10) {
+        printf("Réussi\n");
+    } else {
+        printf("À retravailler\n");
+    }
+    return 0;
+}</code></pre>
+
+          <ul>
+            <li><code>==</code> teste l’égalité, tandis que <code>=</code> affecte une valeur à une variable</li>
+            <li><code>!=</code>, <code><</code>, <code>></code>, <code><=</code> et <code>>=</code> sont des opérateurs de comparaison</li>
+            <li><code>&&</code> signifie « et », <code>||</code> signifie « ou », et <code>!</code> inverse une condition</li>
+            <li><code>%</code> donne le reste d’une division entière : <code>nombre % 2 == 0</code> teste si le nombre est pair</li>
+          </ul>
+        </section>
+
+        <section id="boucles">
+          <h2>5. Boucles : for, while et boucles imbriquées</h2>
+          <h3>Boucle for</h3>
+          <p>Utilise souvent <code>for</code> quand le nombre de répétitions est connu. Les trois parties indiquent l’initialisation, la condition de continuation et la mise à jour.</p>
+
+          <pre><code>for (int i = 1; i &lt;= 5; i++) {
+    printf("%d\n", i);
+}</code></pre>
+
+          <h3>Boucle while</h3>
+          <p>Utilise souvent <code>while</code> quand la répétition dépend d’une condition. Pense à modifier la variable de contrôle pour que la boucle puisse se terminer.</p>
+
+          <pre><code>int compteur = 1;
+while (compteur &lt;= 5) {
+    printf("%d\n", compteur);
+    compteur++;
+}</code></pre>
+
+          <h3>Boucles imbriquées</h3>
+          <p>Une boucle imbriquée est une boucle placée dans une autre. Elle sert notamment à parcourir une grille ou à dessiner une forme ligne par ligne.</p>
+
+          <pre><code>for (int ligne = 1; ligne &lt;= 3; ligne++) {
+    for (int colonne = 1; colonne &lt;= 5; colonne++) {
+        printf("*");
+    }
+    printf("\n");
+}</code></pre>
+
+          <div class="output"><strong>Affichage</strong><code>*****<br>*****<br>*****</code></div>
+        </section>
+
+        <section id="fonctions">
+          <h2>6. Fonctions simples</h2>
+          <p>Une fonction regroupe des instructions sous un nom. Elle peut recevoir des paramètres et renvoyer une valeur. Une fonction de type <code>void</code> ne renvoie pas de valeur.</p>
+
+          <h3>Sans paramètre et sans valeur de retour</h3>
+          <pre><code>void afficherBonjour(void) {
+    printf("Bonjour !\n");
+}
+
+int main(void) {
+    afficherBonjour();
+    return 0;
+}</code></pre>
+          <p>Le premier <code>void</code> indique que la fonction ne renvoie rien. Le <code>void</code> entre parenthèses indique qu’elle ne reçoit aucun paramètre.</p>
+
+          <h3>Avec paramètres et sans valeur de retour</h3>
+          <pre><code>void afficherRectangle(int largeur, int hauteur) {
+    for (int ligne = 0; ligne &lt; hauteur; ligne++) {
+        for (int colonne = 0; colonne &lt; largeur; colonne++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main(void) {
+    afficherRectangle(5, 3);
+    return 0;
+}</code></pre>
+          <p>Les valeurs <code>5</code> et <code>3</code> sont transmises aux paramètres <code>largeur</code> et <code>hauteur</code>. La fonction affiche la forme et ne renvoie aucune valeur.</p>
+
+          <h3>Avec paramètres et valeur de retour</h3>
+          <pre><code>int maximum(int a, int b) {
+    if (a &gt; b) {
+        return a;
+    }
+    return b;
+}
+
+int main(void) {
+    int resultat = maximum(12, 7);
+    printf("Maximum : %d\n", resultat);
+    return 0;
+}</code></pre>
+          <p><code>return</code> renvoie le résultat à l’endroit où la fonction a été appelée. La fonction peut ensuite être utilisée dans une affectation ou une expression.</p>
+        </section>
+
+        <section id="exercices">
+          <h2>7. Exercices classiques et démonstrations</h2>
+          <h3>Afficher les nombres de 0 à 100</h3>
+          <pre><code>for (int i = 0; i &lt;= 100; i++) {
+    printf("%d ", i);
+}
+printf("\n");</code></pre>
+          <p>La condition <code>i &lt;= 100</code> inclut la valeur 100.</p>
+
+          <h3>Afficher les nombres pairs de 0 à 100</h3>
+          <pre><code>for (int i = 0; i &lt;= 100; i += 2) {
+    printf("%d ", i);
+}
+printf("\n");</code></pre>
+          <p>Comme on commence à 0 et qu’on ajoute 2 à chaque tour, chaque valeur affichée est paire.</p>
+
+          <h3>FizzBuzz</h3>
+          <p>On teste d’abord la divisibilité par 3 et 5 ensemble. Sinon, le cas divisible par 3 serait traité avant celui de 5 et afficherait seulement <code>Fizz</code> pour 15.</p>
+          <pre><code>for (int i = 1; i &lt;= 15; i++) {
+    if (i % 3 == 0 &amp;&amp; i % 5 == 0) {
+        printf("FizzBuzz\n");
+    } else if (i % 3 == 0) {
+        printf("Fizz\n");
+    } else if (i % 5 == 0) {
+        printf("Buzz\n");
+    } else {
+        printf("%d\n", i);
+    }
+}</code></pre>
+          <div class="output"><strong>Début de l’affichage</strong><code>1<br>2<br>Fizz<br>4<br>Buzz<br>Fizz<br>7<br>8<br>Fizz<br>Buzz<br>11<br>Fizz<br>13<br>14<br>FizzBuzz</code></div>
+
+          <h3>Dessiner un triangle</h3>
+          <pre><code>for (int ligne = 1; ligne &lt;= 5; ligne++) {
+    for (int colonne = 1; colonne &lt;= ligne; colonne++) {
+        printf("*");
+    }
+    printf("\n");
+}</code></pre>
+          <div class="output"><strong>Affichage</strong><code>*<br>**<br>***<br>****<br>*****</code></div>
+
+          <h3>Dessiner un carré</h3>
+          <pre><code>for (int ligne = 0; ligne &lt; 4; ligne++) {
+    for (int colonne = 0; colonne &lt; 4; colonne++) {
+        printf("*");
+    }
+    printf("\n");
+}</code></pre>
+          <div class="output"><strong>Affichage</strong><code>****<br>****<br>****<br>****</code></div>
+
+          <h3>Vérifier un palindrome</h3>
+          <p>Cette version compare les caractères symétriques. Elle considère les majuscules différentes des minuscules et ne retire ni espaces ni ponctuation.</p>
+          <pre><code>int estPalindrome(const char mot[]) {
+    int longueur = 0;
+    while (mot[longueur] != '\0') {
+        longueur++;
+    }
+
+    for (int i = 0; i &lt; longueur / 2; i++) {
+        if (mot[i] != mot[longueur - 1 - i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main(void) {
+    char mot[] = "radar";
+    if (estPalindrome(mot)) {
+        printf("%s est un palindrome.\n", mot);
+    } else {
+        printf("%s n'est pas un palindrome.\n", mot);
+    }
+    return 0;
+}</code></pre>
+          <p>La fonction renvoie <code>1</code> si le mot est un palindrome et <code>0</code> sinon. <code>main</code> utilise cette valeur dans une condition.</p>
+
+          <h3>Rectangle de largeur variable</h3>
+          <p>La même logique de boucles imbriquées dessine un rectangle : remplace la limite de colonnes par la largeur et celle des lignes par la hauteur.</p>
+          <pre><code>int largeur = 8;
+int hauteur = 3;
+for (int ligne = 0; ligne &lt; hauteur; ligne++) {
+    for (int colonne = 0; colonne &lt; largeur; colonne++) {
+        printf("*");
+    }
+    printf("\n");
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Conseils pour vérifier un programme</h2>
+          <ul>
+            <li>Compile avec les avertissements activés : <code>gcc -std=c11 -Wall -Wextra fichier.c -o programme</code></li>
+            <li>Lance ensuite le programme : <code>./programme</code></li>
+            <li>Vérifie les limites des boucles, les indices de tableau et les retours à la ligne</li>
+            <li>Compare la sortie réelle à la sortie attendue, caractère par caractère</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
